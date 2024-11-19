@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
+use App\Models\FolderMaha;
 use Illuminate\Support\Facades\Route;
+use App\Models\ModelBerita;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,19 +17,18 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/about', function () {
-    return view('about');
+Route::get('/login', function () {
+    return view('login');
 });
 
-Route::get('/post', function () {
-    return view('post');
-});
-
-Route::get('/profile', function () {
-    return view('profile');
+Route::get('/register', function () {
+    return view('register');
 });
