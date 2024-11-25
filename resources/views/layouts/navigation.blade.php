@@ -69,7 +69,7 @@
                         <div class="hidden sm:flex space-x-8">
                             <a href="#home" class="text-gray-500 hover:text-accent">Home</a>
                             <a href="#feature" class="text-gray-500 hover:text-accent">Feature</a>
-                            <a href="#sport" class="text-gray-500 hover:text-accent">Sport</a>
+                            <a href="/sport" class="text-gray-500 hover:text-accent">Sport</a>
                             <a href="#about" class="text-gray-500 hover:text-accent">About</a>
                         </div>
 

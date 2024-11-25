@@ -8,6 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- AOS Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     /* Custom Tailwind CSS Config */
     :root {
@@ -52,39 +54,147 @@
     footer a:hover {
       color: var(--accent);
     }
-    /* Sport Section Styling */
-.sport-logo {
-  min-width: 150px;
-  margin: 0 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.sport-logo img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
-  transition: transform 0.3s ease;
-}
-.sport-logo img:hover {
-  transform: scale(1.2); /* Zoom effect on hover */
+    
+     /* Styling for the logos */
+  .sport-logo {
+    flex: none;
+    width: 100px;
+    margin: 0 10px;
+  }
+
+  .sport-logo img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Slider wrapper to create animation */
+  .slider-wrapper {
+    display: flex;
+    animation: scroll 10s linear infinite;
+  }
+
+  /* Keyframes for smooth scrolling animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Ensure overflow hidden for smooth loop */
+  .relative {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+.features-section {
+  background-color: #EFF6E0;
+  padding: 80px 20px;
+  color: #124559;
 }
 
-/* Slider Animation */
-@keyframes slide {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-.animate-slider {
+.features-content {
   display: flex;
-  animation: slide 20s linear infinite; /* 20s duration, infinite loop */
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
 }
-  </style>
+
+.features-text {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.features-text .section-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.features-text .section-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #598392;
+}
+
+.features-buttons {
+  margin-top: 20px;
+}
+
+.features-buttons .btn-primary,
+.features-buttons .btn-secondary {
+  padding: 10px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.features-buttons .btn-primary {
+  background-color: #124559;
+  color: #EFF6E0;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.features-buttons .btn-primary:hover {
+  background-color: #01161E;
+}
+
+.features-buttons .btn-secondary {
+  background-color: #598392;
+  color: #EFF6E0;
+  transition: background-color 0.3s ease;
+}
+
+.features-buttons .btn-secondary:hover {
+  background-color: #AEC3B0;
+}
+
+.features-grid {
+  display: flex;
+  flex: 2;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.feature-item {
+  background-color: #AEC3B0;
+  border-radius: 10px;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: scale(1.05);
+}
+
+.feature-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #01161E;
+}
+
+.feature-description {
+  font-size: 1rem;
+  color: #01161E;
+}
+</style>
 </head>
 <body class="bg-primary-bg">
 
@@ -97,7 +207,7 @@
       <ul class="hidden md:flex space-x-6">
         <li><a href="#home" class="hover:text-accent">Home</a></li>
         <li><a href="#feature" class="hover:text-accent">Feature</a></li>
-        <li><a href="#sport" class="hover:text-accent">Sport</a></li>
+        <li><a href="/register" class="hover:text-accent">Sport</a></li>
         <li><a href="#about" class="hover:text-accent">About</a></li>
       </ul>
       <!-- Login/Register -->
@@ -117,7 +227,7 @@
       <ul class="flex flex-col space-y-2 px-4 py-4">
         <li><a href="#home" class="hover:text-accent">Home</a></li>
         <li><a href="#feature" class="hover:text-accent">Feature</a></li>
-        <li><a href="#sport" class="hover:text-accent">Sport</a></li>
+        <li><a href="/sport" class="hover:text-accent">Sport</a></li>
         <li><a href="#about" class="hover:text-accent">About</a></li>
         <li><a href="/login" class="text-accent">Login</a></li>
         <li><a href="/register" class="text-accent">Register</a></li>
@@ -136,29 +246,96 @@
       </div>
     </div>
   </section>
+<!-- Features Section -->
+<section id="features" class="features-section">
+  <div class="container">
+    <!-- Section Title -->
+    <div class="features-text text-left mb-8 animate-fadeIn">
+      <h1 class="text-4xl font-bold mb-4">
+        Mengapa Memilih Sportmatch untuk Olahraga Anda
+      </h1>
+      <p class="text-lg">
+        Sportmatch menawarkan solusi cepat untuk menemukan rival olahraga di dekat Anda. Dengan fitur yang mudah digunakan, Anda dapat segera terhubung dengan sesama penggemar olahraga.
+      </p>
+    </div>
 
-  <!-- Feature Section -->
-  <section id="feature" class="py-16">
-    <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6" data-aos="fade-up" style="color: var(--contrast);">Features</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8" data-aos="fade-right">
-        <div>
-          <a href="#search" class="block btn-primary text-center py-12 rounded-md shadow-lg">Search</a>
+    <!-- Features Boxes -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Feature 1 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp">
+        <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
+          <img
+            src="https://storage.googleapis.com/a1aa/image/lmN7vEmmI3JHNlUFfE62eoQmY9NFZ9OZeshvcqTo2jhOrhmnA.jpg"
+            alt="Temukan Rival"
+            class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
+          />
+          <div class="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-25 transition duration-300 rounded-md"></div>
         </div>
-        <div>
-          <a href="#schedule" class="block btn-secondary text-center py-12 rounded-md shadow-lg">Schedule</a>
+        <h2 class="text-xl font-bold mb-2 text-center">
+          Temukan Rival dengan Cepat dan Mudah
+        </h2>
+        <p class="text-gray-700 text-center">
+          Cari dan temukan penggemar olahraga di sekitar Anda.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp delay-100">
+        <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
+          <img
+            src="https://storage.googleapis.com/a1aa/image/lmN7vEmmI3JHNlUFfE62eoQmY9NFZ9OZeshvcqTo2jhOrhmnA.jpg"
+            alt="Jadwal Pertandingan"
+            class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
+          />
+          <div class="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-25 transition duration-300 rounded-md"></div>
         </div>
+        <h2 class="text-xl font-bold mb-2 text-center">
+          Jadwalkan Pertandingan dengan Sangat Mudah
+        </h2>
+        <p class="text-gray-700 text-center">
+          Gunakan alat penjadwalan kami untuk mengatur pertandingan.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp delay-200">
+        <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
+          <img
+            src="https://storage.googleapis.com/a1aa/image/lmN7vEmmI3JHNlUFfE62eoQmY9NFZ9OZeshvcqTo2jhOrhmnA.jpg"
+            alt="Peta Interaktif"
+            class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
+          />
+          <div class="absolute inset-0 bg-blue-500 opacity-0 group-hover:opacity-25 transition duration-300 rounded-md"></div>
+        </div>
+        <h2 class="text-xl font-bold mb-2 text-center">
+          Peta Interaktif untuk Menemukan Rival
+        </h2>
+        <p class="text-gray-700 text-center">
+          Lihat rival yang tersedia di peta waktu nyata.
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- Sport Section -->
-<section id="sport" class="py-16" style="background-color: var(--primary);">
+    <!-- Action Buttons -->
+    <div class="features-buttons text-center mt-8 animate-fadeIn delay-300">
+      <button class="btn-primary px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 mr-4 transition duration-300 transform hover:scale-105">
+        Pelajari
+      </button>
+      <button class="btn-secondary px-6 py-2 text-blue-500 border border-blue-500 rounded-md hover:bg-blue-100 transition duration-300 transform hover:scale-105">
+        Jelajahi
+      </button>
+    </div>
+  </div>
+</section>
+
+ 
+ <!-- Sport Section -->
+<section id="sport" class="py-16" style="background-color: var(--accent);">
   <div class="container mx-auto text-center">
     <h2 class="text-4xl font-bold mb-8" style="color: var(--dark);">Explore Sports</h2>
     <div class="relative overflow-hidden">
       <!-- Slider Wrapper -->
-      <div class="flex items-center animate-slider">
+      <div class="flex items-center slider-wrapper">
         <!-- Logo Items -->
         <div class="sport-logo">
           <img src="https://via.placeholder.com/100" alt="Football" title="Football">
@@ -195,6 +372,39 @@
     </div>
   </div>
 </section>
+
+
+<div class="container mx-auto px-4 py-8">
+  <div class="text-center">
+      <h2 class="text-sm font-bold uppercase">Cara</h2>
+      <h1 class="text-4xl font-bold mt-2">Panduan Langkah demi Langkah Menggunakan Sportmatch</h1>
+      <p class="text-lg mt-4">Sportmatch memudahkan Anda untuk terhubung dengan rival olahraga. Ikuti langkah-langkah sederhana ini untuk memulai!</p>
+  </div>
+  <div class="flex justify-center mt-12 space-x-8">
+      <div class="text-center">
+          <i class="fas fa-cube text-4xl"></i>
+          <h3 class="text-xl font-bold mt-4">Langkah 1: Buat Profil Anda</h3>
+          <p class="mt-2">Daftar dan buat profil olahraga Anda dengan mudah.</p>
+      </div>
+      <div class="text-center">
+          <i class="fas fa-cube text-4xl"></i>
+          <h3 class="text-xl font-bold mt-4">Langkah 2: Pilih Olahraga & Lokasi Anda</h3>
+          <p class="mt-2">Tentukan olahraga favorit dan lokasi Anda untuk menemukan rival.</p>
+      </div>
+      <div class="text-center">
+          <i class="fas fa-cube text-4xl"></i>
+          <h3 class="text-xl font-bold mt-4">Langkah 3: Temukan dan Tantang Rival Anda</h3>
+          <p class="mt-2">Cari rival yang sesuai dan tantang mereka untuk bermain.</p>
+      </div>
+  </div>
+  <div class="flex justify-center mt-12 space-x-4">
+      <button class="bg-white border border-black text-black font-bold py-2 px-4 rounded">Mulai</button>
+      <button class="bg-white border border-black text-black font-bold py-2 px-4 rounded flex items-center">
+          Bergabung <i class="fas fa-arrow-right ml-2"></i>
+      </button>
+  </div>
+</div>
+
         <!-- About Section -->
 <section id="about" class="py-16" style="background-color: var(--secondary);">
   <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">

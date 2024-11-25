@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/sport', function () {
+    return view('sport');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
