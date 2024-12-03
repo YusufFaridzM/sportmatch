@@ -12,10 +12,10 @@
     /* Custom Tailwind CSS Config */
     :root {
       --primary-bg: #EFF6E0;
-      --secondary: #AEC3B0;
-      --accent: #598392;
-      --contrast: #124559;
-      --dark: #01161E;
+      --secondary: #a63d62 ;
+      --accent: #702e5a;
+      --contrast: #300828;
+      --dark: #000000;
     }
 
     body {

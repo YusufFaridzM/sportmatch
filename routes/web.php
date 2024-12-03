@@ -21,6 +21,10 @@ Route::get('/sport', function () {
     return view('sport');
 });
 
+Route::get('/futsal', function () {
+    return view('futsal');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
