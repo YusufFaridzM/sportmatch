@@ -5,8 +5,8 @@
 
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
+    {{-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> --}}
+        {{-- <div class="flex justify-between h-16"> --}}
             <div class="flex">
                 <!-- Logo -->
                 {{-- <div class="shrink-0 flex items-center">
@@ -67,7 +67,7 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden sm:flex space-x-8">
-                            <a href="#home" class="text-gray-500 hover:text-accent">Home</a>
+                            <a href="/dashboard" class="text-gray-500 hover:text-accent">Home</a>
                             <a href="#feature" class="text-gray-500 hover:text-accent">Feature</a>
                             <a href="/sport" class="text-gray-500 hover:text-accent">Sport</a>
                             <a href="#about" class="text-gray-500 hover:text-accent">About</a>
