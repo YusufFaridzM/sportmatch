@@ -1,94 +1,140 @@
-<x-app-layout>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Futsal</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    </head>
-    <body class="bg-black text-white font-sans">
-        <div class="flex flex-col h-screen">
-            <!-- Navbar -->
-            <div class="w-full bg-gray-800 p-4 flex justify-between items-center">
-                <h1 class="text-xl">Futsal App</h1>
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-envelope text-xl"></i>
-                    <span>4</span>
-                    <button class="flex items-center space-x-2">
-                        <span class="text-xl">Profile</span>
-                        <i class="fas fa-user text-xl"></i>
-                    </button>
-                </div>
-            </div>
-    
-            <div class="flex flex-grow">
-                <!-- Sidebar -->
-                <div x-data="{ open: false }" class="flex flex-col bg-gray-900 p-4 space-y-8 transition-all duration-300 ease-in-out">
-                    <!-- Toggle button for sidebar -->
-                    <button @click="open = !open" class="text-gray-400 hover:text-white p-2">
-                        <i class="fas" :class="open ? 'fa-chevron-left' : 'fa-chevron-right'"></i>
-                    </button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Sport</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #222;
+            color: white;
+            text-align: center;
+        }
 
-                    <!-- Sidebar Links -->
-                    <div x-show="open" x-transition class="transition-all duration-300">
-                        <div class="w-64 p-6">
-                            <a href="/dashboard" class="flex flex-col items-center text-gray-400 hover:text-white">
-                                <i class="fas fa-home text-2xl"></i>
-                                <span class="mt-2 text-sm">Home</span>
-                            </a>
-                        </div>
-                        <div class="w-64 p-6">
-                            <a href="/penjadwalan" class="flex flex-col items-center text-gray-400 hover:text-white">
-                                <i class="fas fa-calendar text-2xl"></i>
-                                <span class="mt-2 text-sm">Penjadwalan</span>
-                            </a>
-                        </div>
-                        <div class="w-64 p-6">
-                            <a href="/about" class="flex flex-col items-center text-gray-400 hover:text-white">
-                                <i class="fas fa-users text-2xl"></i>
-                                <span class="mt-2 text-sm">About Us</span>
-                            </a>
-                        </div>
-                        <div class="w-64 p-6">
-                            <a href="/contact" class="flex flex-col items-center text-gray-400 hover:text-white">
-                                <i class="fas fa-envelope text-2xl"></i>
-                                <span class="mt-2 text-sm">Contact</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5em;
+        }
 
-                <!-- Main Content -->
-                <div class="flex-grow w-full p-6">
-                    <h1 class="text-2xl mb-4">Jadwal Futsal</h1>
-                    <div class="bg-gray-800 p-4 rounded-lg mb-6">
-                        <div class="flex items-center">
-                            <div class="bg-yellow-500 text-black rounded-full px-2 py-1 mr-4">DES</div>
-                            <div>
-                                <h2 class="text-xl">Nama Tim</h2>
-                                <p class="text-gray-400">Des 26</p>
-                                <p class="text-green-500"><i class="fas fa-map-marker-alt text-xl"></i> Vanny Futsal</p>
-                                <button class="bg-blue-600 text-white px-4 py-2 rounded-lg mt-2">Set Lineup</button>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <h2 class="text-xl mb-4">Past Events</h2>
-                    <div class="bg-gray-800 p-4 rounded-lg">
-                        <div class="flex items-center">
-                            <div class="bg-gray-700 text-white rounded-full px-2 py-1 mr-4">NOV</div>
-                            <div>
-                                <h2 class="text-xl">Arabian Nights</h2>
-                                <p class="text-gray-400">Nov 22 – 26</p>
-                                <p class="text-green-500"><i class="fas fa-gift"></i> Final VIP Experience</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        /* Navbar */
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: center; /* Centers the navbar content */
+            align-items: center;
+            background-color: #EFF6E0;
+            padding: 20px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .navbar .logo {
+            position: absolute;
+            left: 20px; /* Keeps the logo on the left */
+            font-size: 1.5em;
+        }
+
+
+        /* Card Container */
+        .card-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px auto;
+            gap: 10px;
+            flex-wrap: nowrap;
+            max-width: 100vw;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* Individual Card */
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            width: 200px;
+            height: 350px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            z-index: 1;
+        }
+
+        .sport-name {
+            position: absolute;
+            bottom: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 8px 12px;
+            border-radius: 8px;
+            z-index: 2;
+        }
+
+        .highlight {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">Sports</div>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
         </div>
-    </body>
-    </html>
-</x-app-layout>
+    </div>
+    <h1>CHOOSE YOUR SPORT</h1>
+    <div class="card-container">
+        <div class="card">
+            <img src="https://via.placeholder.com/250x400">
+            <a href="/badminton" class="sport-name">Badminton</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x400" alt="Futsal">
+            <a href="/futsal" class="sport-name">Futsal</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x400" alt="Volly">
+            <a href="/volly" class="sport-name">Volly</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x400" alt="Tennis">
+            <a href="/tennis" class="sport-name">Tennis</a>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x400" alt="Football">
+            <a href="/football" class="sport-name highlight">Football</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -207,7 +207,7 @@
       <ul class="hidden md:flex space-x-6">
         <li><a href="#home" class="hover:text-accent">Home</a></li>
         <li><a href="#feature" class="hover:text-accent">Feature</a></li>
-        <li><a href="/register" class="hover:text-accent">Sport</a></li>
+        <li><a href="/sport" class="hover:text-accent">Sport</a></li>
         <li><a href="#about" class="hover:text-accent">About</a></li>
       </ul>
       <!-- Login/Register -->
@@ -458,5 +458,3 @@
   </script>
 </body>
 </html>
-</div>
-</div>

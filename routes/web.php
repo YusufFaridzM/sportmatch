@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/sport', function () {
     return view('sport');
 });
@@ -36,3 +37,19 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/football', function () {
+    return view('football');
+});
+
+Route::get('/volly', function () {
+    return view('volly');
+});
+
+Route::get('/badminton', function () {
+    return view('badminton');
+});
+
+Route::get('/tennis', function () {
+    return view('tennis');
+});

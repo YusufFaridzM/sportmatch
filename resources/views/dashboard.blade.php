@@ -29,7 +29,7 @@
             <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp">
                 <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
                     <img
-                        src="https://storage.googleapis.com/a1aa/image/lmN7vEmmI3JHNlUFfE62eoQmY9NFZ9OZeshvcqTo2jhOrhmnA.jpg"
+                        src="{{ asset('images/futsalback.jpg') }}" alt="Sport Image"
                         alt="Temukan Rival"
                         class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
                     />
@@ -47,7 +47,7 @@
             <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp delay-100">
                 <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
                     <img
-                        src="https://storage.googleapis.com/a1aa/image/lmN7vEmmI3JHNlUFfE62eoQmY9NFZ9OZeshvcqTo2jhOrhmnA.jpg"
+                        src="{{ asset('assets/image/futsalback.jpg') }}"
                         alt="Jadwal Pertandingan"
                         class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
                     />
@@ -129,7 +129,7 @@
             <img src="https://via.placeholder.com/100" alt="Volleyball" title="Volleyball">
           </div>
           <div class="sport-logo">
-            <img src="https://via.placeholder.com/100" alt="Tennis" title="Tennis">
+            <img src="{{ asset('images/futsal1.jpg') }}" alt="Tennis" title="Tennis">
           </div>
         </div>
       </div>
@@ -173,7 +173,7 @@
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
       <!-- Gambar -->
       <div data-aos="fade-right">
-        <img src="https://via.placeholder.com/500" alt="About Us" class="rounded-lg shadow-lg mx-auto">
+        <img src="{{ asset('images/futsal1.jpg') }}" alt="About Us" class="rounded-lg shadow-lg mx-auto">
       </div>
       <!-- Konten -->
       <div data-aos="fade-left" class="text-center md:text-left">
