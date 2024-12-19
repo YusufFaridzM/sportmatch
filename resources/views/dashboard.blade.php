@@ -29,7 +29,7 @@
             <div class="bg-gray-100 p-6 rounded-lg shadow-md transform transition duration-500 hover:scale-105 animate-slideUp">
                 <div class="h-48 bg-gray-300 flex items-center justify-center rounded-md mb-4 relative group">
                     <img
-                        src="{{ asset('images/futsalback.jpg') }}" alt="Sport Image"
+                        src="{{ asset('img/futsalback.jpg') }}" alt="Sport Image"
                         alt="Temukan Rival"
                         class="opacity-50 h-32 group-hover:opacity-80 transition duration-300"
                     />
@@ -135,8 +135,8 @@
       </div>
     </div>
   </section>
-  
-  
+
+
   <div class="container mx-auto px-4 py-8">
     <div class="text-center">
         <h2 class="text-sm font-bold uppercase">Cara</h2>
@@ -167,7 +167,7 @@
         </button>
     </div>
   </div>
-  
+
           <!-- About Section -->
   <section id="about" class="py-16" style="background-color: var(--secondary);">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -195,7 +195,7 @@
       </div>
     </div>
   </section>
-  
+
     <!-- Footer -->
     <footer class="py-8">
       <div class="container mx-auto text-center">
@@ -211,42 +211,42 @@
           --contrast: #124559;
           --dark: #01161E;
         }
-    
+
         body {
           background-color: var(--primary-bg);
           color: var(--dark);
         }
-    
+
         nav {
           background-color: var(--primary-bg);
         }
         nav a:hover {
           color: var(--accent);
         }
-    
+
         .btn-primary {
           background-color: var(--accent);
           color: var(--primary-bg);
         }
-    
+
         .btn-primary:hover {
           background-color: var(--contrast);
         }
-    
+
         .btn-secondary {
           background-color: var(--secondary);
           color: var(--dark);
         }
-    
+
         footer {
           background-color: var(--dark);
           color: var(--primary-bg);
         }
-    
+
         footer a:hover {
           color: var(--accent);
         }
-        
+
  /* Styling for the logos */
  .sport-logo {
     flex: none;
@@ -395,7 +395,7 @@
         easing: 'ease-in-out',
         once: true,
       });
-  
+
       // Mobile Menu Toggle
       const mobileMenuButton = document.getElementById('mobile-menu-button');
       const mobileMenu = document.getElementById('mobile-menu');
