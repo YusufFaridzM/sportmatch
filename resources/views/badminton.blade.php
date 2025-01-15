@@ -4,256 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Badminton Rival Finder</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #EFF6E0;
-        }
-
-        header .logo {
-            display: flex;
-            align-items: center;
-            flex: 1;
-        }
-
-        header .logo img {
-            width: 40px;
-            height: 40px;
-        }
-
-        header nav {
-            display: flex;
-            justify-content: center;
-            flex: 2;
-        }
-
-        header nav a {
-            color: #000000;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        header nav a:hover {
-            text-decoration: underline;
-        }
-
-        header .filter {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        header .filter img {
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-        }
-
-        .hero {
-            position: relative;
-            text-align: center;
-            height: 100vh;
-            background-color: #ff0066;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-            width: 60%;
-            margin: 0 auto;
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .hero-content h1 {
-            font-size: 6em;
-            margin: 0;
-        
-        }
-
-        .hero-content p {
-            font-size: 1.2em;
-            margin: 10px 0 20px;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .hero-content .explore-btn {
-            padding: 10px 20px;
-            background: transparent;
-            border: 2px solid #fff;
-            color: #fff;
-            font-size: 1em;
-            border-radius: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-            animation: fadeIn 3s ease-in-out;
-        }
-
-        .hero-content .explore-btn:hover {
-            background: #fff;
-            color: #000;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .hero-content {
-                width: 80%;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .hero-content p {
-                font-size: 1em;
-            }
-
-            .hero-content .explore-btn {
-                font-size: 0.9em;
-                padding: 8px 16px;
-        
-            }
-        }
-
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .container h1 {
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .search-bar {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .search-bar input {
-            padding: 10px;
-            margin: 0 5px;
-            border: 1px solid #555;
-            border-radius: 5px;
-        }
-
-        .search-bar button {
-            padding: 10px 15px;
-            border: none;
-            background-color: #ff0066;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background-color: #cc0052;
-        }
-
-        .cards {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 0 20px;
-        }
-
-        .match {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ff0066;
-            border-radius: 10px;
-            padding: 20px;
-            position: relative;
-        }
-
-        .vs {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-            margin: 0 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/sport2.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="logo-placeholder.png" alt="Logo">
-        </div>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Sport</a>
-            <a href="#">Feature</a>
-            <a href="#">About Us</a>
-        </nav>
-        <div class="filter">
-            <img src="filter-icon-placeholder.png" alt="Filter">
-        </div>
-    </header>
+    <!-- Navbar -->
+  <nav class="shadow-md fixed w-full top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center px-4 py-3">
+      <!-- Brand -->
+      <a href="#" class="text-2xl font-bold" style="color: var(--primary-bg);">Sportmatch</a>
+      <!-- Nav Links -->
+      <ul class="hidden md:flex space-x-6">
+  <li><a href="/" class="text-white hover:text-accent">Home</a></li>
+  <li><a href="#feature" class="text-white hover:text-accent">Feature</a></li>
+  <li><a href="/sport" class="text-white hover:text-accent">Sport</a></li>
+  <li><a href="#about" class="text-white hover:text-accent">About</a></li>
+</ul>
 
-    <div class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>BADMINTON</h1>
-            <p>Bergabunglah dengan komunitas futsal terbaik.<br>
-               Temukan rival tangguh, asah kemampuanmu,<br>
-               dan nikmati pengalaman pertandingan yang seru.</p>
-            <button class="explore-btn">Explore</button>
-        </div>
+      <!-- Login/Register -->
+      <div class="space-x-4">
+        <a href="/login" class="hidden md:inline-block btn-primary px-4 py-2 rounded-md font-inter">Login</a>
+        <a href="/register" class="hidden md:inline-block btn-secondary px-4 py-2 rounded-md font-inter">Register</a>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden text-dark focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
     </div>
-
-    <div class="container">
-        <h1>Find Your Rival</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Lokasi">
-            <input type="text" placeholder="Waktu">
-            <button>Search</button>
-        </div>
-
-        <div class="cards">
-            <div class="match">
-                <div class="team">Badminton</div>
-                <div class="vs">VS</div>
-                <div class="team">Team B</div>
-            </div>
-            <div class="match">
-                <div class="team">Team C</div>
-                <div class="vs">VS</div>
-                <div class="team">Team D</div>
-            </div>
-        </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <ul class="flex flex-col space-y-2 px-4 py-4">
+        <li><a href="#home" class="hover:text-accent">Home</a></li>
+        <li><a href="#feature" class="hover:text-accent">Feature</a></li>
+        <li><a href="/sport" class="hover:text-accent">Sport</a></li>
+        <li><a href="#about" class="hover:text-accent">About</a></li>
+        <li><a href="/login" class="text-accent">Login</a></li>
+        <li><a href="/register" class="text-accent">Register</a></li>
+      </ul>
     </div>
+  </nav>
+    <!-- Hero Section -->
+  <section id="home" class="h-screen flex items-center justify-center text-center px-4" style="
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('img/badminton.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    color: var(--primary-bg);
+  ">
+    <div data-aos="zoom-in">
+      <h1 class="text-8xl font-bold mb-2">BADMINTON
+      </h1>
+      <p class="text-lg mb-8">mari bermain badminton dan temukan lawan yang sepadan</p>
+      <div class="space-x-4">
+        <a href="/login" class="btn-secondary px-6 py-3 rounded-md btn">Explore</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="form-container">
+  <h1>TEMUKAN LAWAN MU</h1>
+        <input type="text" id="location" placeholder="Enter location">
+
+        <input type="date" id="date">
+
+        <button type="button" onclick="search()">Search</button>
+    </div>
+    <script>
+
+        const locationInput = document.getElementById('location');
+
+        function search() {
+            const location = document.getElementById('location').value;
+            const date = document.getElementById('date').value;
+
+            if (!location || !date) {
+                alert('Please fill in all fields before searching.');
+                return;
+            }
+
+            alert(`Searching for activities at ${location} on ${date}.`);
+        }
+    </script>
+
+
 </body>
 </html>

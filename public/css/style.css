@@ -488,3 +488,52 @@
 a {
     text-decoration: none
 }
+
+
+.form-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 20px;
+}
+
+.form-container label {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-container input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
+}
+
+.form-container input:focus {
+    outline: none;
+    border-color: rgba(230, 230, 230, 0.5);
+}
+
+.form-container button {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+
+
+}
+
+.form-container button:hover {
+    background-color: rgba(230, 230, 230, 0.25);
+}

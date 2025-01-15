@@ -8,154 +8,52 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
-  <style>
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
-body{
-    background: #0e0f12
-
-}
-section{
-    position: relative;
-    width: calc(min(47rem, 90%));
-    margin: 0 auto;
-    min-height: 100vh;
-    column-gap: 3rem;
-    padding-block: min(20vh, 3rem);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.section-title {
-    font-size: 3rem;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 1.5rem; /* Memberi jarak ke slider */
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1rem;
-    position: relative;
-    z-index: 10; /* Pastikan judul berada di atas latar belakang */
-}
-.swiper-container{
-    position: relative;
-}
-.swiper{
-    width: 100%;
-    padding: 60px 0 95ox 0;
-}
-.swiper-slide{
-    width: 10rem;
-    height: 21rem;
-    display: flex;
-    flex-direction: column;
-    align-items: self-start;
-    position: relative;
-}
-.swiper-slide .slide-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -45%);
-    width: 100%;
-}
-.swiper-slide .slide-content img{ width: 200px;
-        height: 300px;
-        object-fit: cover; border-radius: 10px;}
-
-        .slide-link img {
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.slide-link {
-    display: block;
-    text-decoration: none; /* Hilangkan garis bawah link */
-
-}
-
-.slide-link img:hover {
-    transform: scale(1.05); /* Zoom in saat hover */
-}
-
-.slide-link:active img {
-    transform: scale(0.95); /* Zoom out saat di klik */
-    transition: transform 0.1s ease;
-}
-.swiper-button-prev{
-    background: white;
-    border-radius: 50%;
-    top: 47%;
-    opacity: 0.5;
-    left: -30px;
-    width: 30px;
-    height: 30px;
-    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.7)
-}
-.swiper-button-prev::after{content: "";}
-.swiper-button-prev .bx{font-size: 25px;}
-
-.swiper-button-next{
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    top: 47%;
-    right: -30px;
-    width: 30px;
-    height: 30px;
-    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.17)
-}
-.swiper-button-next::after{
-    content: "";}
-.swiper-button-next .bx{font-size: 25px;}
-@media (min-width:760px){
-    .swiper-button-prev,
-    .swiper-button-next{
-        display: flex;
-    }
-}
-.card-image {
-    width: 200px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 10px;
-    filter: blur(2px); /* Efek blur */
-    filter: brightness(0.5); /* Atur kecerahan lebih gelap */
-    transition: opacity 0.2s ease, filter 0.2s ease; /* Animasi saat hover */
-}
-
-.card-image:hover {
-    filter: blur(0); /* Hilangkan blur saat hover */
-    opacity: 1; /* Pulihkan opasitas saat hover */
-}
-
-/* Logo di tengah gambar card */
-.card-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px; /* Ukuran logo */
-    height: 10px;
-    z-index: 2; /* Pastikan logo berada di atas gambar */
-    opacity: 0.9; /* Sedikit transparan */
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Animasi logo saat hover */
-.slide-link:hover .card-logo {
-    transform: translate(-50%, -50%) scale(1.2); /* Perbesar logo */
-    opacity: 1; /* Pulihkan opasitas */
-}
-  </style>
+<link rel="stylesheet" href="{{ asset('css/sport.css') }}">
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
+     <!-- Navbar -->
+  <nav class="shadow-md fixed w-full top-0 z-10">
+    <div class="container mx-auto flex justify-between items-center px-4 py-3">
+      <!-- Brand -->
+      <a href="#" class="text-2xl font-bold" style="color: var(--primary-bg);">Sportmatch</a>
+      <!-- Nav Links -->
+      <ul class="hidden md:flex space-x-6">
+  <li><a href="/" class="text-white hover:text-accent">Home</a></li>
+  <li><a href="#feature" class="text-white hover:text-accent">Feature</a></li>
+  <li><a href="/sport" class="text-white hover:text-accent">Sport</a></li>
+  <li><a href="#about" class="text-white hover:text-accent">About</a></li>
+</ul>
+
+      <!-- Login/Register -->
+      <div class="space-x-4">
+        <a href="/login" class="hidden md:inline-block btn-primary px-4 py-2 rounded-md font-inter">Login</a>
+        <a href="/register" class="hidden md:inline-block btn-secondary px-4 py-2 rounded-md font-inter">Register</a>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-button" class="md:hidden text-dark focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <ul class="flex flex-col space-y-2 px-4 py-4">
+        <li><a href="#home" class="hover:text-accent">Home</a></li>
+        <li><a href="#feature" class="hover:text-accent">Feature</a></li>
+        <li><a href="/sport" class="hover:text-accent">Sport</a></li>
+        <li><a href="#about" class="hover:text-accent">About</a></li>
+        <li><a href="/login" class="text-accent">Login</a></li>
+        <li><a href="/register" class="text-accent">Register</a></li>
+      </ul>
+    </div>
+  </nav>
 <section>
-<h2 class="section-title">CHOOSE YOUR SPORT</h2>
+<h2 class="section-title">
+<span style="color: var(--primary-bg);">Choose your</span>
+<span style="color: var(--secondary);">Sport</span>
+</h2>
   <div class="swiper-container">
     <div class="swiper">
         <div class="swiper-wrapper">

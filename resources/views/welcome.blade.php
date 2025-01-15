@@ -31,7 +31,7 @@
         <a href="/login" class="hidden md:inline-block btn-primary px-4 py-2 rounded-md font-inter">Login</a>
         <a href="/register" class="hidden md:inline-block btn-secondary px-4 py-2 rounded-md font-inter">Register</a>
         <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden text-dark focus:outline-none">
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
           </svg>
@@ -41,12 +41,12 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden">
       <ul class="flex flex-col space-y-2 px-4 py-4">
-        <li><a href="#home" class="hover:text-accent">Home</a></li>
-        <li><a href="#feature" class="hover:text-accent">Feature</a></li>
-        <li><a href="/sport" class="hover:text-accent">Sport</a></li>
-        <li><a href="#about" class="hover:text-accent">About</a></li>
-        <li><a href="/login" class="text-accent">Login</a></li>
-        <li><a href="/register" class="text-accent">Register</a></li>
+        <li><a href="#home" class="text-white hover:text-accent">Home</a></li>
+        <li><a href="#feature" class="text-white hover:text-accent">Feature</a></li>
+        <li><a href="/sport" class="text-white hover:text-accent">Sport</a></li>
+        <li><a href="#about" class="text-white hover:text-accent">About</a></li>
+        <li><a href="/login" class="text-white">Login</a></li>
+        <li><a href="/register" class="text-white">Register</a></li>
       </ul>
     </div>
   </nav>
@@ -168,8 +168,8 @@
         melalui Sportmatch. Mari bersama-sama membuat olahraga lebih menyenangkan dan terorganisir!
       </p>
       <div class="space-x-4">
-        <a href="#feature" class="btn-primary px-6 py-3 rounded-md font-semibold">Explore Features</a>
-        <a href="#sport" class="btn-secondary px-6 py-3 rounded-md font-semibold">Find Sports</a>
+        <a href="/login" class="btn-primary px-6 py-3 rounded-md font-semibold">Explore Features</a>
+        <a href="/sport" class="btn-secondary px-6 py-3 rounded-md font-semibold">Find Sports</a>
       </div>
     </div>
   </div>
