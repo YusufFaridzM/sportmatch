@@ -1,62 +1,62 @@
-<!-- resources/views/schedules/index.blade.php -->
 <x-app-layout>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Jadwal</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-</head>
-<body>
-  <div class="container mt-5">
-    <h1 class="text-center">Daftar Jadwal Pertandingan</h1>
-
-    @if (session('success'))
-      <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    <a href="{{ route('schedules.create') }}" class="btn btn-primary mb-3">Tambah Jadwal</a>
-
-    <form action="{{ route('schedules.search') }}" method="GET" class="mb-3">
-      <div class="input-group">
-        <input type="text" name="search" class="form-control" placeholder="Cari jadwal...">
-        <button type="submit" class="btn btn-secondary">Cari</button>
+  <div class="container mt-20 pt-10 text-center">
+    <h1 class="text-white mb-4">Hasil Pencarian Jadwal</h1>
+  
+    @if($schedules->isEmpty())
+      <div class="text-white">
+        <p>Lawan tidak ditemukan berdasarkan kriteria yang Anda masukkan.</p>
+        <a href="{{ route('schedules.create') }}" class="btn btn-primary">Tambah Jadwal Baru</a>
       </div>
-    </form>
-
-    <table class="table table-striped">
-      <thead>
+    @else
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover text-white mx-auto" style="width: 80%; border: 1px solid white;">
+          <thead>
+            <tr>
+              <th>Olahraga</th>
+              <th>Nama Tim</th>
+              <th>Tanggal</th>
+              <th>Waktu</th>
+              <th>Lokasi</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($schedules as $schedule)
+              <tr>
+                <td>{{ $schedule->sport }}</td>
+                <td>{{ $schedule->team_name }}</td>
+                <td>{{ $schedule->date }}</td>
+                <td>{{ $schedule->time }}</td>
+                <td>{{ $schedule->location }}</td>
+                <td>
+                  <!-- Tombol untuk Apply yang mengarah ke form input nama tim -->
+                  <a href="{{ route('schedules.showApplyForm', $schedule->id) }}" class="btn btn-success btn-sm">Apply</a>
+                </td>
+              </tr>
+            @endforeach
+             <!-- Jadwal yang sudah ada lawannya -->
+        @foreach($schedules->where('challenged_team_id', '!=', null) as $schedule)
         <tr>
-          <th>#</th>
-          <th>Olahraga</th>
-          <th>Tanggal</th>
-          <th>Waktu</th>
-          <th>Lokasi</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($schedules as $schedule)
-        <tr>
-          <td>{{ $loop->iteration }}</td>
           <td>{{ $schedule->sport }}</td>
+          <td>{{ $schedule->team_name }} vs {{ $schedule->challenged_team_name }}</td>
           <td>{{ $schedule->date }}</td>
           <td>{{ $schedule->time }}</td>
           <td>{{ $schedule->location }}</td>
           <td>
-            <a href="{{ route('schedules.edit', $schedule->id) }}" class="btn btn-warning btn-sm">Edit</a>
-            <form action="{{ route('schedules.destroy', $schedule->id) }}" method="POST" class="d-inline">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus jadwal ini?')">Hapus</button>
-            </form>
+            <span class="text-success">Tantangan Diterima</span>
           </td>
         </tr>
-        @endforeach
-      </tbody>
-    </table>
+      @endforeach
+          </tbody>
+        </table>
+      </div>
+    @endif
+  
+    <div class="d-flex justify-content-center mt-3">
+      <a href="/sport" class="btn btn-secondary">Kembali</a>
+      @if(auth()->user()->team == null)
+    <a href="{{ route('teams.create') }}" class="btn btn-warning">Buat Tim Baru</a>
+@endif
+
+    </div>
   </div>
-</body>
-</html>
 </x-app-layout>

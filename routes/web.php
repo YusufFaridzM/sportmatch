@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TeamController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +62,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::post('/schedules/{id}/apply', [ScheduleController::class, 'applyChallenge'])->name('schedules.apply');
+Route::get('/schedules/{schedule}/apply', [ScheduleController::class, 'showApplyForm'])->name('schedules.showApplyForm');
+Route::post('/schedules/{schedule}/apply', [ScheduleController::class, 'applyChallenge'])->name('schedules.apply');
+
+
+
+
+Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
+Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
+
+
 
 // Tambahkan auth routes (register, login, dll.)
 require __DIR__ . '/auth.php';
