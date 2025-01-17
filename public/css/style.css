@@ -14,6 +14,7 @@
       --fore: rgba(255,255,255,.15);
       --dark: #000;
       --blur: rgba(230,230,230,.25);
+      --purple: #870671;
     }
     html {
     width: 100%;
@@ -42,18 +43,63 @@
       background-color: var(--dark);
     }
     nav a:hover {
-      color: var(--accent);
+      color: var(--purple);
     }
 
+    .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
 
+      /* Mengatur section dan konten */
+      #home {
+        background-color: var(--contrast);
+        color: var(--primary-bg);
+        position: relative;
+        padding-left: 1rem; /* px-4 */
+        padding-right: 1rem; /* px-4 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-image: url('https://i.pinimg.com/736x/50/19/5e/50195e720c4b5636a2786346e23151c0.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
 
+      .primary-bg-text {
+        color: var(--primary-bg);
+      }
+
+      .purple-text {
+        color: var(--purple);
+      }
+
+    /* Styling untuk tombol dengan teks hitam di keadaan normal */
     .btn-primary {
-      background-color: var(--fore);
-      color: var(--primary-bg);
+        background-color: var(--primary-bg); /* Warna background tombol */
+        color: black; /* Warna teks tombol sebelum dihover */
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        transition: color 0.3s ease, background-color 0.3s ease; /* Efek transisi */
     }
 
+    /* Styling ketika tombol dihover */
     .btn-primary:hover {
-      background-color: var(--blur);
+        background-color: var(--purple); /* Ubah warna latar belakang tombol saat dihover */
+        color: white; /* Ubah warna teks menjadi putih saat dihover */
+    }
+
+    /* Mengatur konten utama untuk tampil di atas video dan gambar */
+    .content {
+        position: relative;
+        z-index: 1;
     }
 
     .btn-secondary {
@@ -238,11 +284,11 @@
 }
 
 .footer__title-left h2 span {
-    color: var(--secondary)
+    color: var(--purple)
 }
 
 .footer__title-left p {
-    color: rgba(255,255,255,.6);
+    color: rgba(252, 252, 252, 0.6);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -270,7 +316,9 @@
 .footer__title-right a {
     justify-content: center;
     min-width: 272px;
-    padding: 24px 0
+        padding: 1rem 2rem; /* Menambah padding untuk memperbesar ukuran tombol */
+        font-size: 1.25rem; /* Menambah ukuran font agar teks lebih besar */
+        width: auto; /* Secara default lebar mengikuti ukuran konten, kamu bisa sesuaikan dengan fixed width jika perlu */
 }
 
 @media (max-width: 720px) {

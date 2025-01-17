@@ -5,7 +5,7 @@
           <h1 class="text-5xl font-bold mb-6">Cari Lawan Tanding dan Jadwal Olahraga dengan Mudah</h1>
           <p class="text-lg mb-8">Platform terbaik untuk para penggemar olahraga di seluruh Indonesia.</p>
           <div class="space-x-4">
-              <a href="#feature" class="btn-secondary px-6 py-3 rounded-md font-semibold">Get Started</a>
+              <a href="#feature" class="btn-primary px-6 py-3 rounded-md font-semibold">Get Started</a>
               <a href="#about" class="btn-primary px-6 py-3 rounded-md font-semibold">Read More</a>
           </div>
       </div>
@@ -211,42 +211,42 @@
         --contrast: #124559;
         --dark: #01161E;
       }
-  
+
       body {
         background-color: var(--primary-bg);
         color: var(--dark);
       }
-  
+
       nav {
         background-color: var(--primary-bg);
       }
       nav a:hover {
         color: var(--accent);
       }
-  
+
       .btn-primary {
         background-color: var(--accent);
         color: var(--primary-bg);
       }
-  
+
       .btn-primary:hover {
         background-color: var(--contrast);
       }
-  
+
       .btn-secondary {
         background-color: var(--secondary);
         color: var(--dark);
       }
-  
+
       footer {
         background-color: var(--dark);
         color: var(--primary-bg);
       }
-  
+
       footer a:hover {
         color: var(--accent);
       }
-      
+
 /* Styling for the logos */
 .sport-logo {
   flex: none;
