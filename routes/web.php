@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\FutsalScheduleController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TeamController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,64 +16,41 @@ use App\Http\Controllers\TeamController;
 |
 */
 
-// Halaman utama
+// Public Routes
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Halaman olahraga
 Route::get('/sport', function () {
     return view('sport');
 });
 
-// Halaman khusus olahraga
 Route::get('/futsal', function () {
     return view('futsal');
 });
-Route::get('/football', function () {
-    return view('football');
-});
-Route::get('/volly', function () {
-    return view('volly');
-});
-Route::get('/badminton', function () {
-    return view('badminton');
-});
-Route::get('/tennis', function () {
-    return view('tennis');
-});
+Route::post('/futsal-schedules/{id}/challenge', [FutsalScheduleController::class, 'challenge'])->name('futsal-schedules.challenge');
 
-// Halaman dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/futsal-schedules/index', [FutsalScheduleController::class, 'index'])->name('futsal-schedules.index');
 
-// Routes untuk jadwal pertandingan
-Route::middleware('auth')->group(function () {
-    // Resource routes untuk CRUD jadwal
-    Route::resource('schedules', ScheduleController::class);
-
-    // Route tambahan untuk pencarian jadwal
-    Route::get('schedules/search', [ScheduleController::class, 'search'])->name('schedules.search');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/futsal-schedules', [FutsalScheduleController::class, 'index'])->name('futsal-schedules.index');
+    Route::get('/futsal-schedules/create', [FutsalScheduleController::class, 'create'])->name('futsal-schedules.create');
+    Route::post('/futsal-schedules', [FutsalScheduleController::class, 'store'])->name('futsal-schedules.store');
 });
+Route::delete('/futsal-schedules/{id}', [FutsalScheduleController::class, 'destroy'])->name('futsal-schedules.destroy');
 
-// Routes untuk profil pengguna
-Route::middleware('auth')->group(function () {
+
+// Routes with Auth Middleware
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    // Profile Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::post('/schedules/{id}/apply', [ScheduleController::class, 'applyChallenge'])->name('schedules.apply');
-Route::get('/schedules/{schedule}/apply', [ScheduleController::class, 'showApplyForm'])->name('schedules.showApplyForm');
-Route::post('/schedules/{schedule}/apply', [ScheduleController::class, 'applyChallenge'])->name('schedules.apply');
 
-
-
-
-Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
-Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
-
-
-
-// Tambahkan auth routes (register, login, dll.)
+// Include Auth Routes
 require __DIR__ . '/auth.php';

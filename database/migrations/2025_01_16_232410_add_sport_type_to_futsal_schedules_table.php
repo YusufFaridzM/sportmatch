@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('schedules', function (Blueprint $table) {
-            $table->string('challenging_team_name')->nullable()->after('team_name');
+        Schema::table('futsal_schedules', function (Blueprint $table) {
+            $table->string('sport_type')->after('location');
         });
     }
     
     public function down()
     {
-        Schema::table('schedules', function (Blueprint $table) {
-            $table->dropColumn('challenging_team_name');
+        Schema::table('futsal_schedules', function (Blueprint $table) {
+            $table->dropColumn('sport_type');
         });
     }
-    
 };

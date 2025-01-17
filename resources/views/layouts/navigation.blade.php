@@ -1,83 +1,137 @@
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- AOS Library -->
+<!-- Alpine.js -->
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
 
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<nav x-data="{ open: false, userMenuOpen: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700 fixed top-0 left-0 w-full z-10">
+    <!-- Container -->
+    <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-bold text-accent">
+                    Sportmatch
+                </a>
+            </div>
 
+            <!-- Navigation Links (Desktop) -->
+            <div class="hidden sm:flex space-x-8">
+                <a href="/dashboard" class="text-gray-500 hover:text-accent">Home</a>
+                <a href="#feature" class="text-gray-500 hover:text-accent">Feature</a>
+                <a href="/sport" class="text-gray-500 hover:text-accent">Sport</a>
+                <a href="#about" class="text-gray-500 hover:text-accent">About</a>
+            </div>
 
-<nav class="shadow-md fixed w-full top-0 z-10">
-    <div class="container mx-auto flex justify-between items-center px-4 py-3">
-        <!-- Brand -->
-        <a href="#" class="text-2xl font-bold" style="color: var(--primary-bg);">Sportmatch</a>
-        
-        <!-- Nav Links -->
-        <ul class="hidden md:flex space-x-6">
-            <li><a href="#home" class="text-white hover:text-accent">Home</a></li>
-            <li><a href="#features" class="text-white hover:text-accent">Feature</a></li>
-            <li><a href="/sport" class="text-white hover:text-accent">Sport</a></li>
-            <li><a href="#about" class="text-white hover:text-accent">About</a></li>
-        </ul>
-        
-        <!-- Authenticated User -->
-        @auth
-        <div class="hidden md:flex items-center space-x-4">
-            <span class="text-white hover:text-accent">{{ Auth::user()->name }}</span>
-            <x-dropdown align="right">
-                <x-slot name="trigger">
-                    <button class="flex items-center text-white hover:text-accent">
-                        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
+            <!-- User Profile Dropdown (Desktop) -->
+            <div class="hidden sm:flex sm:items-center">
+                <div class="relative">
+                    <!-- User Name (Trigger) -->
+                    <button @click="userMenuOpen = !userMenuOpen"
+                        class="font-medium text-gray-800 dark:text-gray-200 focus:outline-none">
+                        {{ Auth::user()->name }}
                     </button>
-                </x-slot>
-                <x-slot name="content">
-                    <x-dropdown-link :href="route('profile.edit')">Profile</x-dropdown-link>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">Log Out</x-dropdown-link>
-                    </form>
-                </x-slot>
-            </x-dropdown>
-        </div>
-        @endauth
 
-        <!-- Guest Links -->
-        @guest
-        <div class="space-x-4">
-            <a href="/login" class="btn-primary px-4 py-2 rounded-md">Login</a>
-            <a href="/register" class="btn-secondary px-4 py-2 rounded-md">Register</a>
-        </div>
-        @endguest
+                    <!-- Dropdown Menu -->
+                    <div x-show="userMenuOpen" 
+                        @click.away="userMenuOpen = false"
+                        x-transition:enter="transition ease-out duration-100"
+                        x-transition:enter-start="transform opacity-0 scale-95"
+                        x-transition:enter-end="transform opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-75"
+                        x-transition:leave-start="transform opacity-100 scale-100"
+                        x-transition:leave-end="transform opacity-0 scale-95"
+                        class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md shadow-lg py-2">
+                        <!-- Profile Link -->
+                        <a href="{{ route('profile.edit') }}" 
+                            class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                            Profile
+                        </a>
+                        <!-- Logout Form -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" 
+                                class="block w-full text-left px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800">
+                                Log Out
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-button" class="md:hidden text-gray-700 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-        </button>
+            <!-- Hamburger Menu (Mobile) -->
+            <div class="-me-2 flex items-center sm:hidden">
+                <button @click="open = !open"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{ 'hidden': !open, 'inline-flex': open }" class="hidden"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive Navigation Menu (Mobile) -->
+    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <a href="#home" class="block text-gray-500 hover:text-accent">Home</a>
+            <a href="#feature" class="block text-gray-500 hover:text-accent">Feature</a>
+            <a href="#sport" class="block text-gray-500 hover:text-accent">Sport</a>
+            <a href="#about" class="block text-gray-500 hover:text-accent">About</a>
+        </div>
+        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800 dark:text-gray-200">
+                    {{ Auth::user()->name }}
+                </div>
+                <div class="font-medium text-sm text-gray-500">
+                    {{ Auth::user()->email }}
+                </div>
+            </div>
+            <div class="mt-3 space-y-1">
+                <a href="{{ route('profile.edit') }}" 
+                    class="block text-gray-500 hover:text-accent">
+                    Profile
+                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" 
+                        class="block text-gray-500 hover:text-accent">
+                        Log Out
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </nav>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="hidden md:hidden">
-    <ul class="flex flex-col space-y-2 px-4 py-4">
-        <li><a href="#home" class="text-gray-700 hover:text-accent">Home</a></li>
-        <li><a href="#features" class="text-gray-700 hover:text-accent">Feature</a></li>
-        <li><a href="/sport" class="text-gray-700 hover:text-accent">Sport</a></li>
-        <li><a href="#about" class="text-gray-700 hover:text-accent">About</a></li>
-        @guest
-        <li><a href="/login" class="text-gray-700">Login</a></li>
-        <li><a href="/register" class="text-gray-700">Register</a></li>
-        @endguest
-        @auth
-        <li><a href="{{ route('profile.edit') }}" class="text-gray-700">Profile</a></li>
-        <li>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();" class="text-gray-700">Log Out</a>
-            </form>
-        </li>
-        @endauth
-    </ul>
-</div>
+<!-- Additional Styles -->
+<style>
+    :root {
+        --primary-bg: #EFF6E0;
+        --secondary: #AEC3B0;
+        --accent: #598392;
+        --contrast: #124559;
+        --dark: #01161E;
+    }
 
+    nav {
+        background-color: var(--primary-bg);
+    }
+
+    nav a {
+        transition: color 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+        color: var(--accent);
+    }
+
+    nav .text-accent {
+        color: var(--accent);
+    }
+</style>
